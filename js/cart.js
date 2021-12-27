@@ -122,7 +122,7 @@
                     cartCounterUpdate();
                 };
                 
-            // Cantidad del carrito (Input)
+            // Cantidad del carrito
                 function cartQuantityChange(event) {
                     const inputCartChange = event.target;
                     inputCartChange.value <= 0 ? ( inputCartChange.value = 1 ) : null;
