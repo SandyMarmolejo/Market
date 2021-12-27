@@ -13,15 +13,15 @@
 
                 function addToCartBtnClick( event ) {
                     let btn = event.target;
-                    const abarrotes = btn.closest( '.plant' );
+                    const abarrotes = btn.closest( '.abarrote' );
 
                     // Productos
-                        const plantImg = abarrotes.querySelector( '.plant-img' ).src;                        
-                        const plantTitle = abarrotes.querySelector( '.plant-title' ).textContent;
-                        const plantPrice = abarrotes.querySelector( '.abarrote-price' ).textContent;
+                        const abarroteImg = abarrotes.querySelector( '.abarrote-img' ).src;                        
+                        const abarroteTitle = abarrotes.querySelector( '.abarrote-title' ).textContent;
+                        const abarrotePrice = abarrotes.querySelector( '.abarrote-price' ).textContent;
                         
                 
-                    modalCart( plantImg, plantTitle, plantPrice );
+                    modalCart( abarroteImg, abarroteTitle, abarrotePrice );
 
                     cartCounterUpdate();
                     
@@ -31,14 +31,14 @@
             // Modal cart
                 const showCart = document.querySelector( '.show-cart' );
                     
-                function modalCart( plantImg, plantTitle, plantPrice ) {
+                function modalCart( abarroteImg, abarroteTitle, abarrotePrice ) {
 
                     // Que no se duplique el mismo producto en el Carrito
-                        let abarrotesTitleRepeat = showCart.getElementsByClassName( 'shoppingCartPlantTitle' );
+                        let abarrotesTitleRepeat = showCart.getElementsByClassName( 'shoppingCartabarroteTitle' );
                             
                         for( let i = 0; i < abarrotesTitleRepeat.length; i++ ) {
-                            if( abarrotesTitleRepeat[i].innerHTML === plantTitle ) {
-                                let abarrotesTitleQuantity = abarrotesTitleRepeat[i].parentElement.parentElement.querySelector( '.shoppingCartPlantQuantity' );
+                            if( abarrotesTitleRepeat[i].innerHTML === abarroteTitle ) {
+                                let abarrotesTitleQuantity = abarrotesTitleRepeat[i].parentElement.parentElement.querySelector( '.shoppingCartAbarroteQuantity' );
                                 abarrotesTitleQuantity.value++;
                                 cartTotalPrice();
                             
@@ -49,19 +49,19 @@
                     const shoppingCartDiv = document.createElement( 'div' );
                     const cartModal =
                         ` 
-                            <div class="row shoppingCartPlant mt-3 text-center">
+                            <div class="row shoppingCartAbarrote mt-3 text-center">
                                 <div class="col-3">
-                                    <img src=${plantImg} class="imagenesModal"/>
-                                    <h6 class="mt-2 shoppingCartPlantTitle">${plantTitle}</h6>
+                                    <img src=${abarroteImg} class="imagenesModal"/>
+                                    <h6 class="mt-2 shoppingCartabarroteTitle">${abarroteTitle}</h6>
                                 </div> 
                                 <div class="col-3">
-                                    <p class="abarrote-price shoppingCartPlantPrice">${plantPrice}</p>
+                                    <p class="abarrote-price shoppingCartabarrotePrice">${abarrotePrice}</p>
                                 </div>
                                 <div class="col-3">
-                                    <input class="text-center shoppingCartPlantQuantity inputCuenta" type="number" value="1">
+                                    <input class="text-center shoppingCartAbarroteQuantity inputCuenta" type="number" value="1">
                                 </div>
                                 <div class="col-3">
-                                    <button class="btn btn-danger" id="remove-plant-btn" data-name="${plantTitle}">
+                                    <button class="btn btn-danger" id="remove-abarrote-btn" data-name="${abarroteTitle}">
                                         x
                                     </button>
                                 </div>
@@ -71,13 +71,13 @@
                     shoppingCartDiv.innerHTML = cartModal;
                     showCart.append( shoppingCartDiv );
 
-                    // Botón Remove plant
-                        const removeButton = shoppingCartDiv.querySelector( '#remove-plant-btn' );
+                    // Botón Remove abarrote
+                        const removeButton = shoppingCartDiv.querySelector( '#remove-abarrote-btn' );
 
-                        removeButton.addEventListener( 'click', removePlantFromCart );
+                        removeButton.addEventListener( 'click', removeabarroteFromCart );
 
                     // Input Quantity
-                        const inputCartQuantity = shoppingCartDiv.querySelector( '.shoppingCartPlantQuantity' );
+                        const inputCartQuantity = shoppingCartDiv.querySelector( '.shoppingCartAbarroteQuantity' );
                         
                         inputCartQuantity.addEventListener( 'change', cartQuantityChange );
                     
@@ -87,7 +87,7 @@
 
             // Cart Counter
                 function cartCounterUpdate() {
-                    const cartabarrotesLength = document.querySelectorAll( '.shoppingCartPlant' );
+                    const cartabarrotesLength = document.querySelectorAll( '.shoppingCartAbarrote' );
                     const cartCounter = document.querySelector( '#cart-counter' );
                     cartCounter.innerHTML = cartabarrotesLength.length;
                     cartTotalPrice();
@@ -98,26 +98,26 @@
                 function cartTotalPrice() {
                     var totalCount = 0;
                     const totalPrice = document.querySelector( '.total-price' );
-                    const shoppingCartabarrotes = document.querySelectorAll( '.shoppingCartPlant' );
+                    const shoppingCartabarrotes = document.querySelectorAll( '.shoppingCartAbarrote' );
                     
-                    shoppingCartabarrotes.forEach( ( shoppingCartPlant ) => {
+                    shoppingCartabarrotes.forEach( ( shoppingCartAbarrote ) => {
 
-                        const plantCartPriceElement = shoppingCartPlant.querySelector( '.shoppingCartPlantPrice' );
-                        const plantCartPrice = Number( plantCartPriceElement.textContent.replace( '$', '' ) );
+                        const abarroteCartPriceElement = shoppingCartAbarrote.querySelector( '.shoppingCartabarrotePrice' );
+                        const abarroteCartPrice = Number( abarroteCartPriceElement.textContent.replace( '$', '' ) );
 
-                        const plantCartQuantityElement = shoppingCartPlant.querySelector( '.shoppingCartPlantQuantity' );
-                        const plantCartQuantity = Number( plantCartQuantityElement.value );
+                        const abarroteCartQuantityElement = shoppingCartAbarrote.querySelector( '.shoppingCartAbarroteQuantity' );
+                        const abarroteCartQuantity = Number( abarroteCartQuantityElement.value );
 
-                        totalCount += plantCartPrice * plantCartQuantity;
+                        totalCount += abarroteCartPrice * abarroteCartQuantity;
                     });
 
                     totalPrice.innerHTML = `$${totalCount.toFixed(2)}`;
                 };
 
-            // Eliminar plantas del carrito
-                function removePlantFromCart(event) {
+            // Eliminar abarroteas del carrito
+                function removeabarroteFromCart(event) {
                     const removeBtnClicked = event.target;
-                    removeBtnClicked.closest( '.shoppingCartPlant' ).remove();
+                    removeBtnClicked.closest( '.shoppingCartAbarrote' ).remove();
                     cartTotalPrice();
                     cartCounterUpdate();
                 };
